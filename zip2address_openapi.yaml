@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  description: This is a api document for Zip2Address server.
+  version: 1.0.0
+  title: Japan Zipcode to address API
+  contact:
+    email: nxtnhan@gmail.com
+    website: fullstackstation.com
+paths:
+  /:
+    get:
+      summary: Get address
+      parameters:
+        - name: zipcode
+          in: path
+          schema:
+            type: string
+          description: xxx-yyyy or xxxyyyy
+          required: true
+      responses:
+        '200':
+          description: Project's information
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      pref:
+                        type: string
+                      city:
+                        type: string
+                      town:
+                        type: string
+                      address:
+                        type: string
+                      fullAddress:
+                        type: string
+                  message:
+                    type: string
+                  code:
+                    type: integer
+        '400':
+          description: Zipcode not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+        '404':
+          description: Zipcode not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
